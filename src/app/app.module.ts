@@ -4,19 +4,25 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // Define routes here if needed
-  { path: '', component: AppComponent }  // Example route
+  // { path: '', component: AppComponent },
+  {
+    path: 'table',
+    loadChildren: () =>
+      import('./modules/table/table.module').then((m) => m.TableModule),
+  },
+  {
+    path: 'ngx-table',
+    loadChildren: () =>
+      import('./modules/ngx-table/ngx-table.module').then(
+        (m) => m.NgxTableModule
+      ),
+  },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

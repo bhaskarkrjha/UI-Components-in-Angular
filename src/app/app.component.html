@@ -1,7 +1,33 @@
-<nav>
-  <ul>
-    <li><a routerLink="/table">Table</a></li>
-    <li><a routerLink="/ngx-table">NGX Table</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>UI Components in Angular</h1>
+</mat-toolbar>
+<mat-sidenav-container autosize>
+  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>house</mat-icon>
+           <span *ngIf="!isCollapsed">Home</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/table" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>table_rows</mat-icon>
+           <span *ngIf="!isCollapsed">Table</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/ngx-table" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>view_list</mat-icon>
+           <span *ngIf="!isCollapsed">Ngx Data-table</span>
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -25,6 +25,13 @@ const routes: Routes = [
         (m) => m.NgxTableModule
       ),
   },
+  {
+    path: 'ngx-table-search-action',
+    loadChildren: () =>
+      import('./modules/table-search-action/table-search-action.module').then(
+        (m) => m.TableSearchActionModule
+      ),
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
   { path: '**', redirectTo: '/home' } // Wildcard route for a 404 page or fallback
 ];

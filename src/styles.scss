@@ -54,3 +54,9 @@ h2 {
   color: #3f51b5;
   margin-bottom: 10px;
 }
+// Import default ngx-datatable styles
+@import '@swimlane/ngx-datatable/index.scss';
+@import '@swimlane/ngx-datatable/themes/material.scss';
+@import '@swimlane/ngx-datatable/assets/icons.scss';
+// Import custom styles
+@import 'assets/styles/ngx-datatable-custom.scss';

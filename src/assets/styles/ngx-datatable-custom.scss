@@ -1,0 +1,241 @@
+@import '@swimlane/ngx-datatable/index.scss';
+@import '@swimlane/ngx-datatable/themes/material.scss';
+@import '@swimlane/ngx-datatable/assets/icons.scss';
+
+.datatable-header-cell-template-wrap {
+  font-family: var(--font-primary), sans-serif;
+  color: #000000;
+  font-weight: 500 !important;
+  font-size: 14px;
+}
+
+.ngx-datatable.material {
+  box-shadow: none !important;
+}
+
+.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell,
+.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell {
+  border-bottom: 1px solid #c4c9d9 !important;
+}
+
+.ngx-datatable .datatable-row-center,
+.ngx-datatable .datatable-row-group,
+.ngx-datatable .datatable-row-left,
+.ngx-datatable .datatable-row-right {
+  border-top: 1px solid #c4c9d9 !important;
+}
+
+/*
+* For longer content,you can add a .text-truncate class to truncate the text with an ellipsis.
+* to use : [cellClass]="' text-truncate'" [headerClass]="' text-truncate'"
+*/
+
+.datatable-body-cell.text-truncate .datatable-body-cell-label {
+  display: block !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+}
+
+.datatable-tree-button:disabled {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ngx-datatable.material.tree-datatable .datatable-footer .page-count {
+  display: none;
+}
+
+.ngx-datatable {
+  /*
+  if needed pls add via class
+  */
+  // overflow-x: auto !important;
+  // overflow-y: hidden !important;
+
+
+  .datatable-group-header {
+    height: 38px;
+    padding: 0.3rem 0.3rem !important;
+    font-size: 13px;
+  }
+
+  &.scroll-vertical .datatable-body {
+    overflow-y: scroll !important;
+  }
+
+  .empty-row {
+    display: flex;
+    height: 100% !important;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.popup-height {
+    min-height: 400px;
+  }
+
+  &.material {
+    .datatable-body {
+      .datatable-row-detail {
+        border-left: 1px #e7eaf4 solid;
+        border-right: 1px #e7eaf4 solid;
+        background: none;
+      }
+
+      .datatable-body-row .datatable-body-cell {
+        padding: 0.3rem 0.9rem !important;
+        font-size: 12px !important;
+
+        a {
+          font-size: 12px !important;
+          color: #F67451;
+
+          &.mat-button {
+            padding: 0.1rem 0.9rem !important;
+            line-height: inherit !important;
+          }
+        }
+      }
+    }
+
+    .datatable-header .datatable-header-cell {
+      padding: 0.9rem !important;
+    }
+
+  }
+}
+
+.datatable-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #ffffff !important;
+}
+
+.datatable-body::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.ngx-datatable.material .datatable-body .progress-linear {
+  width: inherit !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell,
+.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell {
+  display: flex;
+  align-items: center;
+  
+  &.unset-truncate .datatable-body-cell-label,
+  &.unset-truncate .datatable-header-cell-template-wrap {
+    text-overflow: unset !important;
+  }
+
+  &.text-left .datatable-body-cell-label,
+  &.text-left .datatable-header-cell-template-wrap {
+    text-align: left;
+  }
+
+  &.unset-truncate .datatable-body-cell-label,
+  &.unset-truncate .datatable-header-cell-template-wrap {
+    text-overflow: unset !important;
+  }
+
+  &.text-right .datatable-body-cell-label,
+  &.text-right .datatable-header-cell-template-wrap {
+    text-align: right;
+  }
+
+  &.text-center .datatable-body-cell-label,
+  &.text-center .datatable-header-cell-template-wrap {
+    text-align: center;
+  }
+
+  &.txt-underline .datatable-body-cell-label,
+  &.text-underline .datatable-header-cell-template-wrap {
+    text-decoration: underline;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0px !important;
+    font-size: 12px !important;
+  }
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell {
+  padding: 0.6rem 0.9rem 0rem;
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell div.datatable-header-cell-template-wrap,
+.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell div.datatable-body-cell-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  flex: auto;
+
+  .cloud-icon {
+    border-style: none;
+    height: 27px;
+    display: block;
+    max-width: 100%;
+    width: auto;
+    margin-top: -2px;
+
+  }
+
+  .mat-radio-button {
+    margin-top: 0px;
+
+    .mat-radio-ripple {
+      position: inherit !important;
+    }
+
+    .mat-radio-input {
+      bottom: inherit;
+    }
+  }
+
+  .table-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin: 0px 0.4rem !important;
+    position: relative;
+    top: 4px;
+  }
+}
+
+.rowh1 {
+  height: calc(100vh - 112px);
+}
+
+.rowh2 {
+  height: calc(100vh - 160px);
+}
+
+.rowh3 {
+  height: calc(100vh - 196px);
+}
+
+.rowh4 {
+  height: calc(100vh - 300px);
+}
+
+.rowh5 {
+  height: calc(100vh - 350px);
+}
+
+.mat-tooltip {
+  word-break: break-all !important;
+  max-width: 300px !important;
+}

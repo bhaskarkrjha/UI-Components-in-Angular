@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-  <h2>Table With Search and Actions :</h2>
+  <h2>Data Table With Search :</h2>
   <div class="row pb-2">
     <div class="col-3">
       <app-search
@@ -11,6 +11,41 @@
         [disableSearch]="disableSearch"
       >
       </app-search>
+    </div>
+    <div class="row pb-2">
+      <ngx-datatable
+        #myTable
+        class="material h-100 px-0"
+        [ngClass]="{
+          rowh4: rowData?.length > 5
+        }"
+        [columnMode]="ngxService.config.columnMode"
+        [headerHeight]="ngxService.config.headerHeight"
+        [footerHeight]="ngxService.config.footerHeight"
+        [rowHeight]="ngxService.config.rowHeight"
+        [limit]="ngxService.config.limit"
+        [scrollbarV]="ngxService.config.scrollbarV"
+        [scrollbarH]="ngxService.config.scrollbarH"
+        [rows]="rowData"
+      >
+        <ngx-datatable-column
+          *ngFor="let column of columnDefs"
+          [name]="column?.name"
+          [prop]="column?.prop"
+          [sortable]="column?.sortable !== undefined ? column?.sortable : true"
+          [comparator]="column?.comparator"
+          [cellClass]="column?.cellClass"
+          [headerClass]="column?.headerClass"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span [matTooltip]="row[column?.prop]" class="mw-100 d-inline-block">
+              <span class="text-truncate">
+                {{ row[column?.prop] ?? "" }}
+              </span>
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
     </div>
   </div>
 </div>

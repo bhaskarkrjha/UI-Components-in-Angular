@@ -9,10 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-import { ActionToolbarComponent } from './action-toolbar/action-toolbar.component';
 
 @NgModule({
-  declarations: [SearchComponent, DropdownComponent,ActionToolbarComponent],
+  declarations: [SearchComponent, DropdownComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,8 +21,8 @@ import { ActionToolbarComponent } from './action-toolbar/action-toolbar.componen
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatIconModule,
+    MatIconModule
   ],
-  exports: [SearchComponent, DropdownComponent,ActionToolbarComponent],
+  exports: [SearchComponent, DropdownComponent],
 })
 export class SharedModule {}

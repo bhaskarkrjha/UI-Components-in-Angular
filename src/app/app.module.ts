@@ -26,10 +26,52 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'ngx-table-search-action',
+    path: 'ngx-table-search',
     loadChildren: () =>
       import('./modules/table-search-action/table-search-action.module').then(
         (m) => m.TableSearchActionModule
+      ),
+  },
+  {
+    path: 'expandable-table',
+    loadChildren: () =>
+      import('./modules/expandable-table/expandable-table.module').then(
+        (m) => m.ExpandableTableModule
+      ),
+  },
+  {
+    path: 'dropdown-filter',
+    loadChildren: () =>
+      import('./modules/dropdown-filter/dropdown-filter.module').then(
+        (m) => m.DropdownFilterModule
+      ),
+  },
+  {
+    path: 'email-list',
+    loadChildren: () =>
+      import('./modules/email-list/email-list.module').then(
+        (m) => m.EmailListModule
+      ),
+  },
+  {
+    path: 'detail-forms',
+    loadChildren: () =>
+      import('./modules/detail-form/detail-form.module').then(
+        (m) => m.DetailFormModule
+      ),
+  },
+  {
+    path: 'cron-job',
+    loadChildren: () =>
+      import('./modules/cron-job-scheduler/cron-job-scheduler.module').then(
+        (m) => m.CronJobSchedulerModule
+      ),
+  },
+  {
+    path: 'query-builder',
+    loadChildren: () =>
+      import('./modules/query-builder/query-builder.module').then(
+        (m) => m.QueryBuilderModule
       ),
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route

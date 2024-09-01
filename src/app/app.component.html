@@ -25,10 +25,46 @@
            <span *ngIf="!isCollapsed">Data-table</span>
         </span>
       </a>
-      <a mat-list-item routerLink="/ngx-table-search-action" routerLinkActive="active">
+      <a mat-list-item routerLink="/ngx-table-search" routerLinkActive="active">
         <span class="entry">
            <mat-icon>search</mat-icon>
            <span *ngIf="!isCollapsed">Search</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/expandable-table" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>unfold_more</mat-icon>
+           <span *ngIf="!isCollapsed">Expand Table</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/dropdown-filter" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>filter_list</mat-icon>
+           <span *ngIf="!isCollapsed">Dropdown</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/email-list" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>mail</mat-icon>
+           <span *ngIf="!isCollapsed">Email List</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/detail-forms" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>description</mat-icon>
+           <span *ngIf="!isCollapsed">Forms</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/cron-job" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>schedule</mat-icon>
+           <span *ngIf="!isCollapsed">Cron Job</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/query-builder" routerLinkActive="active">
+        <span class="entry">
+           <mat-icon>build</mat-icon>
+           <span *ngIf="!isCollapsed">Query Build</span>
         </span>
       </a>
     </mat-nav-list>

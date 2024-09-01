@@ -1,1 +1,160 @@
-<p>search works!</p>
+<div class="advance-search z-index-99 position-relative" [ngClass]="wrapperClasses">
+    <div class="as-input-wrapper d-dlex align-item-center position-relative">
+      <span class="search-icon-wrap" *ngIf="!columnSearch">
+        <ng-container *ngIf="isClearShow">
+          <span
+            (click)="startRecording()"
+            *ngIf="!isUserSpeaking && enableMic"
+            class="mask-icon-microphone me-2 mask-width-18 text-neutral-100 position-static"
+          ></span>
+          <span
+            (click)="stopRecording()"
+            *ngIf="isUserSpeaking && enableMic"
+            class="mask-icon-microphone me-2 mask-width-18 text-neutral-100 plus-add position-static"
+          ></span>
+          <span
+            *ngIf="!isSearchBtnClicked"
+            class="as-left-ico mask-icon-search mask-width-16 position-absolute"
+            (click)="onSearchBtnClicked()"
+          ></span>
+          <span
+            *ngIf="isSearchBtnClicked"
+            class="as-left-ico mask-icon-clear-icon mask-width-16 position-absolute"
+            (click)="onClearBtnClicked()"
+          ></span>
+        </ng-container>
+        <ng-container *ngIf="!isClearShow">
+          <span class="as-left-ico mask-icon-search mask-width-16 position-absolute"></span>
+        </ng-container>
+      </span>
+  
+      <span *ngIf="columnSearch" class="as-left-ico mask-icon-arrow-left mask-width-16 position-absolute"></span>
+      <input
+        #search
+        [disabled]="!searchModel?.trim()?.length && disableSearch"
+        class="as-input fz-12 fw-medium box-border w-100 bg-neutral-10 rounded-pill"
+        type="text"
+        name=""
+        placeholder="{{
+          columnSearch === true
+            ? 'Click here to search by columns'
+            : changePlaceHolder
+            ? searchPlaceholder
+            : defaultSearchPlaceholder
+        }}"
+        [(ngModel)]="searchModel"
+        [readonly]="columnSearch"
+        (click)="toggleDropdown()"
+        (input)="keyPresHandler()"
+        [matTooltip]="!searchModel?.trim()?.length && disableSearch ? 'Search not Applicable' : ''"
+        [ngClass]="{
+          'pe-3': !enableMic && !searchByColumn,
+          'cursor-not-allowed op-5 ': !searchModel?.trim()?.length && disableSearch
+        }"
+      />
+      <div
+        class="as-input-btn box-border d-flex justify-content-center align-items-center p-0 pe-3 ps-2 position-absolute text-center bg-neutral-0"
+        *ngIf="!isUserSpeaking && !isClearShow && enableMic"
+        style="width: auto"
+      >
+        <span
+          (click)="startRecording()"
+          class="mask-icon-microphone mask-width-18 text-neutral-100 position-static"
+        ></span>
+        <!-- <span class="mask-icon-search mask-width-18 text-neutral-100 ms-2" (click)="toggleDropdown()" ></span> -->
+      </div>
+  
+      <div
+        class="as-input-btn box-border d-flex justify-content-center align-items-center p-0 pe-3 ps-2 position-absolute text-center bg-neutral-0"
+        *ngIf="isUserSpeaking && !isClearShow && enableMic"
+        style="width: auto"
+      >
+        <span
+          (click)="stopRecording()"
+          class="mask-icon-microphone mask-width-18 text-neutral-100 plus-add position-static"
+        ></span>
+        <!-- <span class="mask-icon-search mask-width-18 text-neutral-100 ms-2" (click)="toggleDropdown()"></span> -->
+      </div>
+  
+      <div
+        *ngIf="searchByColumn"
+        class="as-input-btn box-border d-flex justify-content-center align-items-center bg-neutral-0 p-0 position-absolute text-center"
+      >
+        <span
+          *ngIf="searchModel !== ''"
+          (click)="clearFiltervalues()"
+          class="mask-icon-clear-icon mask-width-16 text-neutral-100 position-absolute as-clear"
+        ></span>
+        <span (click)="toggleSearchView()" class="mask-icon-search-toggle mask-width-16 text-primary-100"></span>
+      </div>
+    </div>
+  
+    <div
+      *ngIf="showDropdown"
+      class="as-dropdown-panel position-absolute bg-neutral-0 rounded-2 shadow p-2 w-100 box-border"
+    >
+      <div class="as-title fz-12 fw-medium text-secondary-90">Search In</div>
+      <div class="as-scroll overflow-auto pe-2">
+        <ng-container *ngFor="let field of filterObj">
+          <div class="as-search-in d-flex align-items-center ps-2" *ngIf="field?.filter === 'yes'">
+            <label class="as-label text-truncate fz-12 fw-medium text-neutral-100 pe-2">{{ field?.name }}</label>
+            <div *ngIf="field?.type?.toLowerCase() !== 'date'" class="as-in-input position-relative flex-grow-1">
+              <input
+                tabindex="i"
+                #inputField
+                class="fz-12 fw-medium box-border w-100 p-0 rounded-0"
+                [(ngModel)]="field.value"
+                (ngModelChange)="singleFieldSearch && clearFilterFieldvalues(field)"
+                name="field.prop"
+                placeholder="{{ field.placeholder }}"
+                type="{{field?.type}}"
+              />
+            </div>
+            <div *ngIf="field?.type?.toLowerCase() === 'date'" class="as-in-input position-relative flex-grow-1">
+              <mat-form-field appearance="fill" class="w-100 form-field-plane">
+                <input
+                  matInput
+                  disabled
+                  [matDatepicker]="picker1"
+                  class="as-calender"
+                  [(ngModel)]="field.value"
+                  name="field.prop"
+                  placeholder="dd/mm/yyyy"
+                />
+                <span
+                  matSuffix
+                  *ngIf="field?.value"
+                  (click)="field.value = null"
+                  class="mask-icon-clear-icon mask-width-18 text-neutral-100 mx-2 cursor-pointer"
+                ></span>
+                <mat-datepicker-toggle matSuffix *ngIf="!field?.value" [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker disabled="false" #picker1 color="primary"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+  
+      <div class="d-flex align-items-center justify-content-end py-2">
+        <button
+          (click)="applySearchByColumns()"
+          type="submit"
+          mat-flat-button
+          color="accent"
+          class="jpl-button"
+        >
+          Search
+        </button>
+        <button
+          mat-stroked-button
+          color="accent"
+          class="jpl-button ms-3"
+          (click)="clearFilterFieldvalues(null)"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -1,4 +1,16 @@
 <div class="dashboard-container">
-    <h2>Table With Search and Actions :</h2>
+  <h2>Table With Search and Actions :</h2>
+  <div class="row pb-2">
+    <div class="col-3">
+      <app-search
+        (applyFilter)="applySearch($event)"
+        resetField="true"
+        class2append="w-100"
+        [rowOrginalData]="rowDataCopy"
+        [columns]="columnDefs2search"
+        [disableSearch]="disableSearch"
+      >
+      </app-search>
+    </div>
+  </div>
 </div>
-  

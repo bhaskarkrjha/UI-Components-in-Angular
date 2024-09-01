@@ -1,0 +1,180 @@
+$primary: #007bff;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #343a40;
+$neutral-0: #ffffff;
+$neutral-20: #e9ecef;
+$neutral-40: #ced4da;
+$secondary-90: #5a6268;
+$secondary-100 : #141618;
+
+.advance-search {
+  width: 100%;
+  min-width: 250px;
+  max-width: 400px;
+
+  .as-input {
+    height: 34px;
+    border: 1px solid $neutral-40;
+    padding: 0.25rem 4.5rem 0.25rem 2.25rem;
+    outline: none;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  .as-left-ico {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+  }
+
+  .as-input-btn {
+    right: 1px;
+    top: 1px;
+    height: 32px;
+    line-height: 32px;
+    border-top-right-radius: 50rem;
+    border-bottom-right-radius: 50rem;
+    width: 40px;
+    background-color: $neutral-0;
+  }
+
+  .as-clear {
+    margin-left: -4.25rem;
+  }
+
+  &.support-center-dashboard-wrap {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+
+    .as-input {
+      height: 38px;
+      border: 0;
+    }
+
+    .search-icon-wrap {
+      position: absolute;
+      right: 0;
+      height: 38px;
+      border-radius: 0 50% 50% 0;
+      background: $neutral-0;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .as-left-ico {
+        position: initial !important;
+        top: initial;
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+.as-dropdown-panel {
+  left: 0;
+  top: calc(100% + 1px);
+
+  .as-search-in {
+    .as-label {
+      line-height: 32px;
+      flex: 0 0 110px;
+    }
+
+    .as-in-input {
+      input[type="text"] {
+        line-height: 32px;
+        outline: none;
+        border: 0;
+        border-bottom: 1px solid $neutral-20;
+
+        &:focus {
+          border-color: $secondary-90;
+        }
+      }
+    }
+  }
+
+  .as-scroll {
+    max-height: 200px;
+  }
+}
+
+::ng-deep .form-field-plane.mat-form-field {
+  .mat-form-field-wrapper {
+    padding: 0;
+
+    .mat-form-field-infix {
+      border-top: 0px;
+      width: auto;
+    }
+
+    .mat-form-field-underline {
+      bottom: 0;
+    }
+
+    .mat-form-field-flex {
+      padding-top: 0px;
+    }
+  }
+
+  &.mat-form-field-disabled {
+    .mat-form-field-underline {
+      background-image: none;
+      background-color: $neutral-20;
+    }
+  }
+}
+
+input[type="number"] {
+  border: 0;
+  border-bottom: 1px solid $neutral-20;
+  outline: none !important;
+
+  &:focus {
+    border-bottom: 1px solid $secondary-100;
+  }
+}
+
+.app-speech-input-btn {
+  position: absolute;
+  right: 0.35rem;
+  height: 24px;
+  width: 24px;
+  line-height: 1;
+  top: calc(50% - 12px);
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"><g><g><path d="M164.998,210c35.888,0,65.085-29.195,65.085-65.12l-0.204-80c0-35.775-29.105-64.88-64.881-64.88 c-35.773,0-64.877,29.105-64.877,64.842l-0.203,80.076C99.918,180.805,129.112,210,164.998,210z M130.121,64.88 c0-19.233,15.646-34.88,34.877-34.88c19.233,0,34.881,15.647,34.881,34.919l0.204,80c0,19.344-15.739,35.081-35.085,35.081 c-19.343,0-35.08-15.737-35.08-35.044L130.121,64.88z"/></g><g><path d="M280.084,154.96c0-8.284-6.716-15-15-15c-8.284,0-15,6.716-15,15c0,46.732-37.878,84.774-84.546,85.068 c-0.181-0.006-0.357-0.027-0.54-0.027c-0.183,0-0.359,0.021-0.541,0.027c-46.665-0.293-84.541-38.335-84.541-85.068 c0-8.284-6.716-15-15-15s-15,6.716-15,15c0,58.373,43.688,106.731,100.082,114.104V300H117c-8.284,0-15,6.716-15,15 s6.716,15,15,15h96.001c8.284,0,15-6.716,15-15s-6.716-15-15-15h-33.003v-30.936C236.395,261.69,280.084,213.332,280.084,154.96z"/></g></g></svg>') no-repeat center center / auto 75%;
+}
+
+.app-speech-input-btn:hover,
+.app-speech-input-btn:focus,
+.app-speech-input-listening .app-speech-input-btn {
+  opacity: 1;
+}
+
+.plus-add {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
+// import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [SearchComponent, DropdownComponent],
+  declarations: [SearchComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,6 +23,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatIconModule
   ],
-  exports: [SearchComponent, DropdownComponent],
+  exports: [SearchComponent],
 })
 export class SharedModule {}

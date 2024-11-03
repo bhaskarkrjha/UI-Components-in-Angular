@@ -38,7 +38,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.scss"
+              "node_modules/@swimlane/ngx-datatable/assets/icons.scss",
+              "node_modules/@ng-select/ng-select/scss/default.theme.scss"
             ],
             "scripts": []
           },
@@ -99,7 +100,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.scss"
+              "node_modules/@swimlane/ngx-datatable/assets/icons.scss",
+              "node_modules/@ng-select/ng-select/scss/default.theme.scss"
             ],
             "scripts": []
           }

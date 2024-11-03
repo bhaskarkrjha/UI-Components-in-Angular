@@ -1,19 +1,42 @@
 .select-wrapper {
-    outline: none;
-    .ng-select {
-        min-width: 0px;
-        flex-grow: 1;
-    }
+  outline: none;
+  .ng-select {
+    min-width: 0px;
+    flex-grow: 1;
+  }
 }
 
 .readonly-wrapper {
-    pointer-events : none;
-    opacity: 0.5;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .custom-mt-ng-check {
-    margin-top: 3px;
+  margin-top: 3px;
 }
-.w-100{
-    max-width: 100px;
+.w-100 {
+  width: 100% !important;
 }
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.align-items-center {
+  align-items: center !important;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lh-base {
+  line-height: 1.5 !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.align-middle {
+  vertical-align: middle !important;
+}
+.d-block {
+  display: block !important;
+} 

@@ -1,67 +1,89 @@
-<!-- <ng-container *ngIf="dataLoaded">
-    <div class="select-wrapper" [ngClass]="{ 'no-events op-4': disabled }">
-      <ng-select
-        #ngSelect
-        [class]="class"
-        [items]="filteredOptions"
-        [bindLabel]="bindLabel"
-        [bindValue]="bindValue"
-        [groupBy]="groupBy"
-        [multiple]="multiple"
-        [selectableGroup]="selectableGroup"
-        [closeOnSelect]="closeOnSelect"
-        [disabled]="disabled"
-        [placeholder]="title"
-        [selectableGroupAsModel]="selectableGroupAsModel"
-        [clearable]="clearable"
-        [(ngModel)]="selectedItems"
-        [compareWith]="compareFn"
-        [searchFn]="searchFn"
-        (search)="onSearch($event)"
-        (change)="onSelectionChange($event)"
-        (open)="onOpen()"
-        (close)="onClose()"
-        appendTo="body"
-        [attr.required]="isRequired"
-        [virtualScroll]="virtualScroll"
-        (scrollToEnd)="onScrollToEnd($event)"
-      >
-        <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-          <div class="ng-value" *ngFor="let item of items.slice(0, 1)">
-            <span *ngIf="showClearIcon" class="ng-value-icon left mask-icon-clear-icon mask-width-16" (click)="clear(item)" aria-hidden="true"></span>
-            <span class="ng-value-label">{{ item[bindLabel] }}</span>
-          </div>
-          <div class="ng-value-more" *ngIf="items.length > 1">
-            <span>+{{ items.length - 1 }} item{{ items.length > 2 ? 's' : '' }}</span>
-          </div>
-        </ng-template>
-        <ng-template ng-header-tmp *ngIf="multiple">
-          <div class="custom-header d-flex justify-content-between align-items-center w-100">
-            <mat-checkbox
-              class="fz-12 fw-medium"
-              [checked]="isAllSelected()"
-              [indeterminate]="isIndeterminate()"
-              (change)="toggleSelectAll($event.checked)"
-            >
-              Select All
-            </mat-checkbox>
-          </div>
-        </ng-template>
-        <ng-template ng-optgroup-tmp let-item="item">
-          <span class="ng-check"></span>
-          <span class="ng-multiple-option-label text-truncate" [ngClass]="item.optGrpClass" [title]="item[groupBy]">
-            {{ item[groupBy] }}
+<ng-container *ngIf="dataLoaded">
+  <div class="select-wrapper" [ngClass]="{ 'no-events op-4': disabled }">
+    <ng-select
+      #ngSelect
+      [class]="class"
+      [items]="filteredOptions"
+      [bindLabel]="bindLabel"
+      [bindValue]="bindValue"
+      [groupBy]="groupBy"
+      [multiple]="multiple"
+      [selectableGroup]="selectableGroup"
+      [closeOnSelect]="closeOnSelect"
+      [disabled]="disabled"
+      [placeholder]="title"
+      [selectableGroupAsModel]="selectableGroupAsModel"
+      [clearable]="clearable"
+      [(ngModel)]="selectedItems"
+      [compareWith]="compareFn"
+      [searchFn]="searchFn"
+      (search)="onSearch($event)"
+      (change)="onSelectionChange($event)"
+      (open)="onOpen()"
+      (close)="onClose()"
+      appendTo="body"
+      [attr.required]="isRequired"
+      [virtualScroll]="virtualScroll"
+      (scrollToEnd)="onScrollToEnd($event)"
+    >
+      <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+        <!-- Show first item as chips -->
+        <div class="ng-value" *ngFor="let item of items?.slice(0, 1)">
+          <span
+            *ngIf="isClear"
+            class="ng-value-icon left mask-icon-clear-icon mask-width-16"
+            (click)="clear(item)"
+            aria-hidden="true"
+          >
           </span>
-        </ng-template>
-        <ng-template ng-option-tmp let-item="item">
-          <span class="ng-check"></span>
-          <div class="lh-base d-inline-block align-middle w-100">
-            <span class="ng-multiple-option-label d-block text-truncate" [ngClass]="item.optClass" [attr.title]="item[bindLabel] || item">
-              {{ item[bindLabel] || item }}
-            </span>
-          </div>
-        </ng-template>
-      </ng-select>
-    </div>
-  </ng-container>
-   -->
+          <span class="ng-value-label">{{ item[bindLabel] }}</span>
+        </div>
+        <!-- Show +n items if there are more than 1 selections -->
+        <div class="ng-value-more" *ngIf="items?.length > 1">
+          <span
+            >+{{ items?.length - 1 }} item{{
+              items?.length > 2 ? "s" : ""
+            }}</span
+          >
+        </div>
+      </ng-template>
+      <ng-template ng-header-tmp *ngIf="multiple">
+        <div
+          class="custom-header d-flex justify-content-between align-items-center w-100"
+        >
+          <mat-checkbox
+            class="fz-12 fw-medium"
+            [checked]="isAllSelected()"
+            [indeterminate]="isIndeterminate()"
+            (change)="toggleSelectAll($event.checked)"
+          >
+            Select All
+          </mat-checkbox>
+        </div>
+      </ng-template>
+      <ng-template ng-optgroup-tmp let-item="item">
+        <span class="ng-check"></span>
+        <span
+          class="ng-multiple-option-label text-truncate"
+          [ngClass]="item?.optGrpClass"
+          [title]="item[groupBy]"
+        >
+          {{ item[groupBy] }}
+        </span>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        <span class="ng-check"></span>
+        <div class="lh-base d-inline-block align-middle w-100">
+          <span
+            class="ng-multiple-option-label d-block text-truncate"
+            [ngClass]="item?.optClass"
+            [attr.title]="item[bindLabel] || item"
+          >
+            {{ item[bindLabel] || item }}
+          </span>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+</ng-container>

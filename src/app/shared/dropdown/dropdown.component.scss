@@ -1,0 +1,19 @@
+.select-wrapper {
+    outline: none;
+    .ng-select {
+        min-width: 0px;
+        flex-grow: 1;
+    }
+}
+
+.readonly-wrapper {
+    pointer-events : none;
+    opacity: 0.5;
+}
+
+.custom-mt-ng-check {
+    margin-top: 3px;
+}
+.w-100{
+    max-width: 100px;
+}

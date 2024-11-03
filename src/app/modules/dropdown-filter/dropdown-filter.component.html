@@ -1,1 +1,16 @@
-<p>dropdown-filter works!</p>
+<div class="dashboard-container">
+    <h2>Dropdown Filters  :</h2>
+    <div class="row pb-2">
+            <app-dropdown
+            title="Single Select"
+            [optionList]="singleSelectOptions"
+            bindValue="id"
+            bindLabel="name"
+            [multiple]="false"
+            [selectedValue]="selectedSingleValue"
+            (selectionChange)="onSingleSelectChange($event)"
+            [disabled]="!singleSelectOptions?.length"
+            class="col-3"
+            ></app-dropdown>
+    </div>
+</div>

@@ -58,10 +58,12 @@ h2 {
 @import '@swimlane/ngx-datatable/index.scss';
 @import '@swimlane/ngx-datatable/themes/material.scss';
 @import '@swimlane/ngx-datatable/assets/icons.scss';
-@import '@ng-select/ng-select/scss/default.theme.scss';
-// @import "@ng-select/ng-select/themes/default.theme.scss";
+// @import '@ng-select/ng-select/scss/default.theme.scss';
+@import '@ng-select/ng-select/themes/default.theme.css';
+@import 'bootstrap/scss/bootstrap';
+
 
 // Import custom styles
 @import 'assets/styles/ngx-datatable-custom.scss';
 // @import 'assets/styles/ng-select.scss';
-// @import 'assets/styles//utilities.scss';
+// @import 'assets/styles/utilities.scss';

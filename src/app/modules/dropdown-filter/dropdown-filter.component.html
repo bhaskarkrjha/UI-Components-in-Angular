@@ -1,29 +1,42 @@
 <div class="dashboard-container">
-    <h2>Dropdown Filters  :</h2>
-    <div class="row pb-2">
-        <div class="col-4">
-            <app-dropdown
-            title="Single Select"
-            [optionList]="singleSelectOptions"
-            bindValue="id"
-            bindLabel="name"
-            [multiple]="false"
-            [selectedValue]="selectedSingleValue"
-            (selectionChange)="onSingleSelectChange($event)"
-            [disabled]="!singleSelectOptions?.length"
-            ></app-dropdown>
-        </div>
-        <div class="col-4">
-            <app-dropdown
-            title="Multi Select"
-            [optionList]="multiSelectOptions"
-            bindValue="id"
-            bindLabel="name"
-            [multiple]="true"
-            [selectedValue]="selectedMultiValues"
-            (selectionChange)="onMultiSelectChange($event)"
-            [disabled]="!multiSelectOptions?.length"
-            ></app-dropdown>
-        </div>
+  <h2>Dropdown Filters :</h2>
+  <div class="row pb-2">
+    <div class="col-3">
+      <app-dropdown
+        title="Single Select"
+        [optionList]="singleSelectOptions"
+        bindValue="id"
+        bindLabel="name"
+        [multiple]="false"
+        [selectedValue]="selectedSingleValue"
+        (selectionChange)="onSingleSelectChange($event)"
+        [disabled]="!singleSelectOptions?.length"
+      ></app-dropdown>
     </div>
+    <div class="col-3">
+      <app-dropdown
+        title="Multi Select"
+        [optionList]="multiSelectOptions"
+        bindValue="id"
+        bindLabel="name"
+        [multiple]="true"
+        [selectedValue]="selectedMultiValues"
+        (selectionChange)="onMultiSelectChange($event)"
+        [disabled]="!multiSelectOptions?.length"
+      ></app-dropdown>
+    </div>
+    <div class="col-3">
+        <app-dropdown
+        title="Group Multi select"
+        [optionList]="groupedMultiSelectOptions"
+        [disabled]="!groupedMultiSelectOptions?.length"
+        bindLabel="name"
+        bindValue="id"
+        groupBy="group"
+        [multiple]="true"
+        [selectedValue]="selectedGroupedMultiValues"
+        (selectionChange)="onGroupedMultiSelectChange($event)"
+      ></app-dropdown>
+    </div>
+  </div>
 </div>

@@ -1,1 +1,51 @@
-<p>email-list works!</p>
+<div class="dashboard-container">
+  <h2>Email list:</h2>
+  <div class="row pb-2">
+    <div class="col-6">
+      <form [formGroup]="sendEmail">
+        <mat-form-field class="w-100">
+          <mat-label>Recipients</mat-label>
+          <mat-chip-grid #chipList required>
+            <mat-chip
+              [color]="item.invalid ? 'warn' : 'accent'"
+              *ngFor="let item of emailList; let i = index"
+              [removable]="true"
+              (removed)="removeEmail(item)"
+              required
+              name="chips"
+            >
+              <span class="text-truncate" [matTooltip]="item.value">{{ item.value }}</span>
+              <button matChipRemove [attr.aria-label]="'remove ' + item?.value">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              #matInput
+              placeholder="Enter email addresses"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="add($event)"
+              (paste)="paste($event)"
+            />
+          </mat-chip-grid>
+          <mat-error *ngIf="emailNotValidTO">
+            <span>Enter valid email id</span>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="col-3 ms-auto">
+      <button mat-raised-button color="primary" [disabled]="emailList?.length === 0 || sendDisabled" (click)="viewList()">View List</button>
+    </div>
+  </div>
+  <div class="row mx-2" *ngIf="showEmail && !sendDisabled">
+    <div class=" bg-dark fz-10 p-3 lh-md mh-100">
+    <ng-container *ngFor="let item of emailList">
+      <div class="d-inline-flex px-2 m-2 border rounded-pill text-white">
+        {{item.value}}
+      </div>
+    </ng-container>
+    </div>
+  </div>
+</div>

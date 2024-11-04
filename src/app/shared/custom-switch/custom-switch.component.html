@@ -1,0 +1,8 @@
+<div class="custom-switch" (click)="toggleSwitch()" [class.disabled]="isDisabled">
+    <span class="left-text">{{ leftText }}</span>
+    <div class="switch-container">
+      <div class="switch" [class.active]="switchStatus"></div>
+    </div>
+    <span class="right-text">{{ rightText }}</span>
+  </div>
+  

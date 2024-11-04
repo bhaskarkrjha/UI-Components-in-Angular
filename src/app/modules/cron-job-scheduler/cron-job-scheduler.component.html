@@ -1,1 +1,43 @@
-<p>cron-job-scheduler works!</p>
+<div class="dashboard-container">
+  <h2>Cron Job:</h2>
+  <div class="row pb-2">
+    <div class="col-6">
+      <app-cron-schedule
+        (isFormValid)="onFormValidityChange($event)"
+        (formDataChange)="onFormDataChange($event)"
+      >
+      </app-cron-schedule>
+    </div>
+    <div class="col-3 ms-auto">
+      <button mat-raised-button color="primary" [disabled]="submitDisabled" (click)="submit()">Submit</button>
+      <button mat-stroked-button color="primary ms-3" (click)="reset()">Reset</button>
+    </div>
+  </div>
+  <div class="row mt-2 pb-4 mx-2" *ngIf="showJobData">
+    <div class="col-12 bg-secondary">
+      <div class="row">
+        <div class="col fz-12">
+          <div class="fw-bold">Repeats </div>
+          <div class="fw-light">{{formData?.repeatsSelected}}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">Send At </div>
+          <div class="fw-light">{{formData?.send_at ?? '-'}}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">Start Date </div>
+          <div class="fw-light">{{formData?.startDate ?? '-'}}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">End Date </div>
+          <div class="fw-light">{{formData?.endDate ?? '-'}}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">Repeats On </div>
+          <div class="fw-light">{{formData?.repeats_on ?? '-'}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

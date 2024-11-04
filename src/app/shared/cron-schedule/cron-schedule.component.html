@@ -1,0 +1,80 @@
+<div class="col-12 mt-4">
+    <app-dropdown
+      title="Repeats"
+      [selectedValue]="repeatsSelected"
+      [optionList]="repeatsOptionList"
+      bindLabel="name"
+      bindValue="value"
+      (selectionChange)="onRepeatsSelection($event)"
+      appendTo="body"
+      tabindex="1"
+    >
+    </app-dropdown>
+  </div>
+  <div class="col-12" *ngIf="repeatsSelected?.name && repeatsSelected?.name?.toLowerCase() !== 'hourly'">
+    <mat-form-field class="w-100" color="accent">
+      <mat-label>Send at</mat-label>
+      <input
+        matInput
+        type="time"
+        [(ngModel)]="time1"
+        (change)="onTime1Change($event)"
+      />
+      <mat-hint align="start" *ngIf="isTimeBeforeCurrent && time1">
+        <span class="text-negative-100 fz-11">Please select a time after the current time.</span>
+      </mat-hint>
+    </mat-form-field>
+  </div> 
+  <div class="col-12 mb-2" *ngIf="repeatsSelected?.name?.toLowerCase() === 'weekly'">
+    <div class="d-flex justify-content-between" style="max-width: 400px; margin: auto">
+      <div
+        *ngFor="let day of days"
+        class="day-circle"
+        [ngClass]="{ 'bg-success text-white': isSelected(day), 'border border-secondary text-secondary': !isSelected(day) }"
+        (click)="selectDay(day)"
+      >
+        <span class="fz-12">{{ day?.name }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <mat-form-field class="w-100" color="accent">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        [(ngModel)]="date1"
+        (dateChange)="onDate1Change($event.value)"
+        [min]="startDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-12 py-2 mb-2">
+    <app-custom-switch
+      class="custom-switch-center fw-medium d-inline-block"
+      leftText="Never End"
+      rightText="Set End Date"
+      [switchStatus]="setEndDate"
+      (statusChange)="addEndDate($event)"
+      [isDisabled]="!date1"
+    >
+    </app-custom-switch>
+  </div>
+  <div class="col-12" *ngIf="setEndDate" [ngClass]="{ 'no-events op-4': !date1 }">
+    <mat-form-field class="w-100" color="accent">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        [disabled]="!date1"
+        [matDatepicker]="picker1"
+        [(ngModel)]="date2"
+        (dateChange)="onDate2Change($event.value)"
+        [min]="date1"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  

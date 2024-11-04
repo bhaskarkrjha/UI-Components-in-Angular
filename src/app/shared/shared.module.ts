@@ -11,8 +11,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core'; //
+import { CronScheduleComponent } from './cron-schedule/cron-schedule.component';
+import { CustomSwitchComponent } from './custom-switch/custom-switch.component';
 @NgModule({
-  declarations: [SearchComponent,DropdownComponent],
+  declarations: [SearchComponent,DropdownComponent, CronScheduleComponent, CustomSwitchComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,8 +27,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatIconModule,
     NgSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatNativeDateModule
   ],
-  exports: [SearchComponent,DropdownComponent],
+  exports: [SearchComponent,DropdownComponent,CronScheduleComponent, CustomSwitchComponent],
 })
 export class SharedModule {}

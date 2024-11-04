@@ -1,0 +1,69 @@
+<div class="position-relative" [formGroup]="queryForm">
+    <div class="d-flex">
+      <mat-button-toggle-group formControlName="condition" class="fz-12 fw-medium">
+        <mat-button-toggle value="AND">And</mat-button-toggle>
+        <mat-button-toggle value="OR">Or</mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="d-flex align-items-center ms-3">
+        <mat-icon 
+          class="mask-icon-add-plus-circle mask-width-20 text-secondary-90 clickable"
+          [matMenuTriggerFor]="menu"
+        >add_circle</mat-icon>
+        <mat-icon
+          class="mask-icon-org-minus mask-width-20 text-secondary-90 clickable ms-2"
+          *ngIf="groupLevel != -1"
+          (click)="handleDeleteGroup()"
+        >remove_circle</mat-icon>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          class="jpl-button btn-sm d-flex align-items-center text-primary-90 fw-medium"
+          (click)="handleAddGroup()"
+        >
+          <!-- <span class="mask-icon-add-plus-circle me-2"></span> Add Group -->
+          <mat-icon class="me-2">add_circle</mat-icon> Add Group
+        </button>
+        <button
+          mat-menu-item
+          class="jpl-button btn-sm d-flex align-items-center text-primary-90 fw-medium"
+          (click)="handleAddRule()"
+        >
+          <!-- <span class="mask-icon-add-plus-circle me-2"></span> Add Condition -->
+          <mat-icon class="me-2">add_circle</mat-icon> Add Condition
+        </button>
+      </mat-menu>
+    </div>
+  
+    <div class="ms-3" formArrayName="rules">
+      <div *ngIf="queryForm.get('rules')" class="item-wrapper">
+        <div
+          *ngFor="let ruleGroup of queryForm.get('rules').controls; let i = index"
+          class="item"
+          [ngClass]="{ 'group-item': queryForm.get('rules').length && ruleGroup.get('type').value === 'group'  }"
+        >
+          <div [formGroupName]="i">
+            <div *ngIf="ruleGroup.get('type').value === 'rule'" class="pt-2">
+              <app-add-condition
+                [rule]="ruleGroup?.value"
+                [groupLevel]="groupLevel"
+                [groupIndex]="i"
+                (handleDelete)="handleChildDelete($event)"
+                (conditionFormData)="handleConditionFormData($event)"
+              ></app-add-condition>
+            </div>
+            <div *ngIf="ruleGroup.get('type').value === 'group'" class="pt-2">
+              <app-add-group
+                [queryForm]="ruleGroup"
+                [query]="ruleGroup?.value"
+                [groupLevel]="groupLevel + 1"
+                [groupIndex]="i"
+                (handleDelete)="handleChildDelete($event)"
+              ></app-add-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

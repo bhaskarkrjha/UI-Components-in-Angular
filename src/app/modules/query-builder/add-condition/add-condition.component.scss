@@ -1,0 +1,19 @@
+.item-block{
+    position: relative;
+    margin-left: 20px;
+    &::before{
+        content: '';
+        height: 1px;
+        width: 20px;
+        border-bottom: 1px dashed var(--neutral-40);
+        position: absolute;
+        right: 100%;
+        top: 45%;
+    }
+  }
+  .d-flex {
+    display: flex !important;
+  }
+  .align-items-center {
+    align-items: center !important;
+  }  

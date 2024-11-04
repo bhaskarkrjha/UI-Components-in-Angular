@@ -1,1 +1,27 @@
-<p>query-builder works!</p>
+<div class="dashboard-container">
+    <h2>Query Builder:</h2>
+    <div class="row pb-5 bg-dark bg-gradient">
+        <div class="col-12 mt-3">
+            <app-add-group
+            [query]="query"
+            [groupLevel]="-1"
+            [resetForm]="resetForm"
+            (jsonData)="handleJsonData($event)"
+            ></app-add-group>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-6 my-3">
+            <button
+             color="accent"
+             mat-stroked-button
+             [disabled]="!jsonData?.validCheck"
+             (click)="showQuery()"
+            >View Expression</button>
+        </div>
+        <div class="col-12">
+            <h3>Generated Expression : {{ ruleExpression }}</h3> 
+        </div>
+    </div>
+</div>

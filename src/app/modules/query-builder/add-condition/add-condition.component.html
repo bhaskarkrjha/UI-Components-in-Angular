@@ -1,0 +1,75 @@
+<div class="item-block bg-secondary p-2">
+    <div class="d-flex align-items-center">
+      <form [formGroup]="conditionForm" class="w-75">
+        <div class="row align-items-center mt-3 px-2">
+        <mat-form-field color="accent" class="col-md-4">
+          <mat-label>Name</mat-label>
+          <input
+            autocomplete="keyValue"
+            tabindex="4"
+            formControlName="name"
+            matInput
+            type="text"
+            (input)="emitFormData()"
+          />
+          <a
+            *ngIf="conditionForm.get('name')?.value"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="conditionForm.get('name').setValue('')"
+          >
+            <!-- <span class="mask-icon-clear-icon mask-width-18 text-neutral-100"></span> -->
+            <mat-icon matSuffix>clear</mat-icon>
+          </a>
+          <mat-error>
+            <span *ngIf="conditionForm.get('name')?.errors?.required">Name is Required.</span>
+          </mat-error>
+        </mat-form-field> 
+        <div class="col-4">    
+          <app-dropdown
+            [optionList]="operatorList"
+            title="Condition"
+            fieldControlName="operator"
+            bindLabel="label"
+            bindValue="value"
+            (selectionChange)="emitFormData($event)"
+          >
+          </app-dropdown>
+        </div>
+        <mat-form-field color="accent" class="col-md-4">
+          <mat-label>Value</mat-label>
+          <input
+            autocomplete="keyValue"
+            tabindex="4"
+            formControlName="value"
+            matInput
+            type="text"
+            (input)="emitFormData()"
+          />
+          <a
+            *ngIf="conditionForm.get('value')?.value"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="conditionForm.get('value').setValue('')"
+          >
+            <!-- <span class="mask-icon-clear-icon mask-width-18 text-neutral-100"></span> -->
+            <mat-icon matSuffix >clear</mat-icon>
+          </a>
+          <mat-error>
+            <span *ngIf="conditionForm.get('value')?.errors?.required">Value is Required.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </form>
+      <div class="ms-2">
+        <!-- <mat-icon
+          class="mask-icon-org-minus mask-width-20 text-secondary-90 clickable mx-3"
+          (click)="handleDeleteRule(rule.id)"
+        ></mat-icon> -->
+        <mat-icon (click)="handleDeleteRule(rule.id)">remove_circle</mat-icon>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,23 @@
+
+  .d-flex {
+    display: flex !important;
+  }
+  .align-items-center {
+    align-items: center !important;
+  }
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray !important;
+    text-align: center;
+  }
+  .position-relative {
+    position: relative !important;
+  }
+  .start-0 {
+    left: 0 !important;
+  }

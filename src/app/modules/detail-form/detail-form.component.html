@@ -1,1 +1,270 @@
-<p>detail-form works!</p>
+<div class="dashboard-container">
+  <h2>Reactive Form for IP :</h2>
+  <div class="row pb-2">
+    <div class="col-12">
+      <form [formGroup]="mainForm">
+        <div class="row">
+          <mat-form-field class="col-4 h-100 ps-2 pb-4" color="accent">
+            <mat-label>Subnet</mat-label>
+            <input
+              placeholder="Enter ip eg. 0.0.0.0/24 to 255.255.255.255/32"
+              tabindex="1"
+              formControlName="subnet"
+              [pattern]="validationPattern.ipSubnetMask"
+              required
+              matInput
+              type="text"
+            />
+            <a
+              *ngIf="ipControls.subnet.value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="clearControl(mainForm.get('subnet'))"
+            >
+              <mat-icon matSuffix>clear</mat-icon>
+            </a>
+            <mat-error>
+              <span
+                *ngIf="ipControls.subnet.errors?.required && mainForm.touched"
+                >Subnet is mandatory
+              </span>
+              <span
+                *ngIf="
+                  mainForm.get('subnet').hasError('pattern') && mainForm.touched
+                "
+                >Entered subnet(s) is not in valid Format. Eg. 0.0.0.0/24 to
+                255.255.255.255/32.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-4 h-100 ps-2 pb-4" color="accent">
+            <mat-label>Gateway</mat-label>
+            <input
+              tabindex="1"
+              formControlName="gateway"
+              [pattern]="validationPattern.ipv4Validation"
+              required
+              matInput
+              type="text"
+            />
+            <a
+              *ngIf="ipControls.gateway.value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="clearControl(mainForm.get('gateway'))"
+            >
+              <mat-icon matSuffix>clear</mat-icon>
+            </a>
+            <mat-error>
+              <span
+                *ngIf="ipControls.gateway.errors?.required && mainForm.touched"
+                >Gateway is mandatory
+              </span>
+              <span
+                *ngIf="
+                  mainForm.get('gateway').hasError('pattern') &&
+                  mainForm.touched
+                "
+                >Entered gateway is not in valid Format. Eg. 0.0.0.0 to
+                255.255.255.255.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-4 h-100 ps-2 pb-4" color="accent">
+            <mat-label>DNS</mat-label>
+            <input
+              tabindex="1"
+              formControlName="dns"
+              [pattern]="validationPattern.ipv4Validation"
+              required
+              matInput
+              type="text"
+            />
+            <a
+              *ngIf="ipControls.dns.value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="clearControl(mainForm.get('dns'))"
+            >
+              <mat-icon matSuffix>clear</mat-icon>
+            </a>
+            <mat-error>
+              <span *ngIf="ipControls.dns.errors?.required && mainForm.touched"
+                >Dns is mandatory.
+              </span>
+              <span
+                *ngIf="
+                  mainForm.get('dns').hasError('pattern') && mainForm.touched
+                "
+                >Entered dns is not in valid Format. Eg. 0.0.0.0 to
+                255.255.255.255.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-4 h-100 ps-2 pb-4" color="accent">
+            <mat-label
+              >Single IP
+              <mat-icon
+                class="position-relative start-0"
+                matTooltipPosition="right"
+                matTooltipClass="lh-sm"
+                [matTooltip]="infoMsg"
+                >info_outline</mat-icon
+              >
+            </mat-label>
+            <input
+              tabindex="1"
+              formControlName="ipRange"
+              [pattern]="validationPattern.ipv4Validation"
+              (change)="onIpChange()"
+              required
+              matInput
+              type="text"
+            />
+            <a
+              *ngIf="ipControls.ipRange.value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="clearControl(mainForm.get('ipRange')); onIpChange()"
+            >
+              <mat-icon matSuffix>clear</mat-icon>
+            </a>
+            <mat-error>
+              <span
+                *ngIf="ipControls.ipRange.errors?.required && mainForm.touched"
+                >Ip is mandatory
+              </span>
+              <span
+                *ngIf="
+                  mainForm.get('ipRange').hasError('pattern') &&
+                  mainForm.touched
+                "
+                >Entered IP is not in valid Format. Eg. 0.0.0.0 to
+                255.255.255.255.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <div class="col-8 align-items-center d-flex pb-4">
+            <div class="circle text-secondary text-center fz-12 fw-medium">
+              OR
+            </div>
+            <mat-form-field class="col-4 h-100 ps-3" color="accent">
+              <mat-label>IP From</mat-label>
+              <input
+                tabindex="1"
+                formControlName="fromPort"
+                [pattern]="validationPattern.ipv4Validation"
+                (change)="onPortChange()"
+                required
+                matInput
+                type="text"
+              />
+              <a
+                *ngIf="ipControls.fromPort.value"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearControl(mainForm.get('fromPort')); onPortChange()"
+              >
+                <mat-icon matSuffix>clear</mat-icon>
+              </a>
+              <mat-error>
+                <span
+                  *ngIf="
+                    ipControls.fromPort.errors?.required && mainForm.touched
+                  "
+                  >Ip is mandatory
+                </span>
+                <span
+                  *ngIf="
+                    mainForm.get('fromPort').hasError('pattern') &&
+                    mainForm.touched
+                  "
+                  >Entered IP is not in valid Format. Eg. 0.0.0.0 to
+                  255.255.255.255.
+                </span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4 h-100 ps-2" color="accent">
+              <mat-label>IP To</mat-label>
+              <input
+                tabindex="1"
+                formControlName="toPort"
+                [pattern]="validationPattern.ipv4Validation"
+                (change)="onPortChange()"
+                required
+                matInput
+                type="text"
+              />
+              <a
+                *ngIf="ipControls.toPort.value"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearControl(mainForm.get('toPort')); onPortChange()"
+              >
+                <mat-icon matSuffix>clear</mat-icon>
+              </a>
+              <mat-error>
+                <span
+                  *ngIf="ipControls.toPort.errors?.required && mainForm.touched"
+                  >Ip is mandatory
+                </span>
+                <span
+                  *ngIf="
+                    mainForm.get('toPort').hasError('pattern') &&
+                    mainForm.touched
+                  "
+                  >Entered IP is not in valid Format. Eg. 0.0.0.0 to
+                  255.255.255.255.
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2 pt-4">
+      <button
+        color="primary"
+        mat-raised-button
+        [disabled]="!mainForm?.valid"
+        (click)="mainForm?.valid && getIPList()"
+      >
+        Populate IP
+      </button>
+    </div>
+    <div class="col-8 bg-secondary" *ngIf="viewFromData">
+      <div class="row mt-2">
+        <div class="col fz-12">
+          <div class="fw-bold">Subnet</div>
+          <div class="fw-light">{{ formData?.subnet }}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">Gateway</div>
+          <div class="fw-light">{{ formData?.gateway ?? "-" }}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">DNS</div>
+          <div class="fw-light">{{ formData?.dns ?? "-" }}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">Single IP</div>
+          <div class="fw-light">{{ formData?.ipRange ?? "-" }}</div>
+        </div>
+        <div class="col fz-12">
+          <div class="fw-bold">From Port</div>
+          <div class="fw-light">{{ formData?.fromPort ?? "-" }}</div>
+        </div>
+        <div class="col fz-12">
+            <div class="fw-bold">To Port</div>
+            <div class="fw-light">{{ formData?.toPort ?? "-" }}</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

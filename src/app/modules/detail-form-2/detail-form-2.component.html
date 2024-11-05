@@ -1,1 +1,123 @@
-<p>detail-form-2 works!</p>
+<div class="dashboard-container">
+  <h2>Reactive Form with Form Array :</h2>
+  <div class="row pb-2">
+    <form #myForm="ngForm" [formGroup]="skudriverForm">
+      <div class="row">
+        <div class="col-12">
+          <div
+            formArrayName="driverFormArray"
+            *ngFor="
+              let payloadItems of driverFormList()?.controls;
+              let i = index
+            "
+          >
+            <ng-container [formGroupName]="i">
+              <div class="row">
+                <div class="col-3">
+                  <mat-form-field class="w-100 mb-3">
+                    <mat-label>Driver {{ i + 1 }} </mat-label>
+                    <input
+                      autocomplete="driverName"
+                      tabindex="4"
+                      formControlName="driverName"
+                      matInput
+                      type="text"
+                    />
+                    <a
+                      *ngIf="payloadItems.get('driverName')?.value"
+                      matSuffix
+                      mat-icon-button
+                      aria-label="Clear"
+                      (click)="clearControl(payloadItems.get('driverName'))"
+                    >
+                      <mat-icon matSuffix>clear</mat-icon>
+                    </a>
+                    <mat-error>
+                      <span
+                        *ngIf="payloadItems.get('driverName')?.errors?.required"
+                        >SKU Driver is Mandatory.
+                      </span>
+                      <span
+                        *ngIf="
+                          payloadItems.get('driverName')?.errors?.maxlength
+                        "
+                        >Max limit 30 characters.
+                      </span>
+                      <span
+                        *ngIf="payloadItems.get('driverName')?.errors?.pattern"
+                        >Special Characters Not Allowed.
+                      </span>
+                    </mat-error>
+                    <mat-hint align="end" class="fz-11"
+                      >{{
+                        payloadItems.get("driverName")?.value?.length ?? 0
+                      }}
+                      / 30 Characters</mat-hint
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-3 mt-2">
+                  <div class="w-100">
+                    <app-dropdown
+                      [optionList]="driverVariableList"
+                      title="Map From*"
+                      bindLabel="name"
+                      bindValue="value"
+                      [selectedValue]="driverVariable"
+                      (selectionChange)="conditioValuenOnChange($event, payloadItems)"
+                    >
+                    </app-dropdown>
+                  </div>
+                </div>
+                <div class="col-1 mt-2">
+                  <div class="d-flex align-items-end">
+                    <mat-icon
+                      (click)="removeFn(i)"
+                      *ngIf="driverFormList().controls.length > 1"
+                      >remove_circle</mat-icon
+                    >
+                    <mat-icon
+                      (click)="addDriver()"
+                      *ngIf="driverFormList()?.controls?.length === i + 1"
+                      >add_circle</mat-icon
+                    >
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="col-12 py-3 px-0 align-bottom">
+        <div class="container-fluid">
+          <button
+            color="accent"
+            mat-flat-button
+            [disabled]="
+              !skudriverForm?.valid
+            "
+            (click)="
+                skudriverForm?.valid &&
+                createMappingGroup()
+            "
+          >
+            Create
+          </button>
+          <button
+            color="accent"
+            class="ms-3"
+            mat-stroked-button
+            (click)="reset()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngFor="let item of viewDriverList">
+        {{item?.driverName}} - {{item?.driverVariable}}
+    </div>
+  </div>
+</div>

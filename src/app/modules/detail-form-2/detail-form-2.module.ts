@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
+import { SharedModule } from '../../shared/shared.module';
 export const routes: Routes = [{ path: '', component: DetailForm2Component }];
 
 
@@ -22,6 +23,7 @@ export const routes: Routes = [{ path: '', component: DetailForm2Component }];
     MatInputModule,
     MatButtonModule,
     MatTooltip,
+    SharedModule,
     RouterModule.forChild(routes),
   ],
 })

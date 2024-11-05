@@ -61,6 +61,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'detail-forms-2',
+    loadChildren: () =>
+      import('./modules/detail-form-2/detail-form-2.module').then(
+        (m) => m.DetailForm2Module
+      ),
+  },
+  {
     path: 'cron-job',
     loadChildren: () =>
       import('./modules/cron-job-scheduler/cron-job-scheduler.module').then(

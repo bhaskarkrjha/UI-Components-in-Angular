@@ -39,6 +39,9 @@ export class DetailForm2Component implements OnInit {
     });
     this.addDriver();
   }
+  addDriver(data = null) {
+    this.driverFormList().push(this.payloadFormDriverList(data));
+  }
   driverFormList(): FormArray {
     return this.skudriverForm.get('driverFormArray') as FormArray;
   }
@@ -46,9 +49,6 @@ export class DetailForm2Component implements OnInit {
     return (<FormArray>this.skudriverForm.get('driverFormArray'))
       .at(index)
       .get(fieldName);
-  }
-  addDriver(data = null) {
-    this.driverFormList().push(this.payloadFormDriverList(data));
   }
   payloadFormDriverList(val) {
     if (val) {

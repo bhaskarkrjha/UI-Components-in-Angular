@@ -21,6 +21,7 @@ export class TableSearchActionComponent implements OnInit{
 
   rowData: any = [];
   ngxService: any;
+  showTable : boolean = false;
   constructor(
     private ngxDTService: NgxDatatableService,
     private formatColumnService: FormatColumnService
@@ -28,7 +29,8 @@ export class TableSearchActionComponent implements OnInit{
     this.ngxService = this.ngxDTService;
   }
   ngOnInit(){
-    this.columnDefs = this.formatColumnService.formatColumnDef(this.columnDefs);
+    this.rowData = [];
+    this.columnDefs = this.formatColumnService.formatColumnDef(this.columnDefs);   
     this.rowData = [
       {
         name: 'Bhaskar',
@@ -144,6 +146,9 @@ export class TableSearchActionComponent implements OnInit{
       },
     ];
     this.rowDataCopy = [...this.rowData];
+    setTimeout(() =>{
+      this.showTable = true;
+    },555);
   }
   applySearch(e){
     console.log(e);

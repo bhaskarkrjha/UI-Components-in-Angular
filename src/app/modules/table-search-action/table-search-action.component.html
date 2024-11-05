@@ -17,6 +17,7 @@
     <div class="row pb-2">
       <ngx-datatable
         #myTable
+        *ngIf="showTable"
         class="material h-100"
         [ngClass]="{
           rowh4: rowData?.length > 5

@@ -60,11 +60,13 @@
                   <div class="w-100">
                     <app-dropdown
                       [optionList]="driverVariableList"
-                      title="Map From*"
+                      title="Drive*"
                       bindLabel="name"
                       bindValue="value"
                       [selectedValue]="driverVariable"
-                      (selectionChange)="conditioValuenOnChange($event, payloadItems)"
+                      (selectionChange)="
+                        conditioValuenOnChange($event, payloadItems)
+                      "
                     >
                     </app-dropdown>
                   </div>
@@ -90,34 +92,135 @@
       </div>
     </form>
     <div class="col-12 py-3 px-0 align-bottom">
-        <div class="container-fluid">
-          <button
-            color="accent"
-            mat-flat-button
-            [disabled]="
-              !skudriverForm?.valid
-            "
-            (click)="
-                skudriverForm?.valid &&
-                createMappingGroup()
-            "
-          >
-            Create
-          </button>
-          <button
-            color="accent"
-            class="ms-3"
-            mat-stroked-button
-            (click)="reset()"
-          >
-            Reset
-          </button>
-        </div>
+      <div class="container-fluid">
+        <button
+          color="accent"
+          mat-flat-button
+          [disabled]="!skudriverForm?.valid"
+          (click)="skudriverForm?.valid && createMappingGroup()"
+        >
+          Create
+        </button>
+        <button
+          color="accent"
+          class="ms-3"
+          mat-stroked-button
+          (click)="reset()"
+        >
+          Reset
+        </button>
       </div>
+    </div>
   </div>
   <div class="row">
-    <div class="col-12" *ngFor="let item of viewDriverList">
-        {{item?.driverName}} - {{item?.driverVariable}}
+    <div *ngIf="showResources">
+      <div class="col-12">
+        <button
+          color="accent"
+          class="mb-2"
+          mat-stroked-button
+          (click)="deleteConnection()"
+          [disabled]="selected?.length == 0"
+        >
+          Delete
+        </button>
+      </div>
+      <div class="row mb-2">
+        <div class="col-3">
+          <app-search
+            (applyFilter)="applySearch($event)"
+            resetField="true"
+            class2append="w-100"
+            [rowOrginalData]="rowDataCopy"
+            [columns]="columnDefs2search"
+            [disableSearch]="disableSearch"
+          >
+          </app-search>
+        </div>
+      </div>
+      <div *ngIf="showtable">
+        <div>
+          <ngx-datatable
+            #myTable
+            *ngIf="showtable"
+            class="material"
+            [ngClass]="{
+              rowh4: rowData?.length > 5
+            }"
+            [columnMode]="ngxService.config.columnMode"
+            [headerHeight]="ngxService.config.headerHeight"
+            [footerHeight]="ngxService.config.footerHeight"
+            [rowHeight]="ngxService.config.rowHeight"
+            [limit]="ngxService.config.limit"
+            [scrollbarV]="ngxService.config.scrollbarV"
+            [scrollbarH]="ngxService.config.scrollbarH"
+            [rows]="rowData"
+            [selectionType]="rowData?.length && ngxService.config.checkbox"
+            (select)="onSelect($event)"
+            [selected]="selected"
+          >
+            <ngx-datatable-column
+              [width]="100"
+              [resizeable]="false"
+              [sortable]="false"
+              [draggable]="false"
+              [canAutoResize]="false"
+              [frozenLeft]="true"
+              [cellClass]="'overflow-visible'"
+              [headerClass]="'overflow-visible'"
+              *ngIf="rowData?.length > 0"
+            >
+              <ng-template
+                ngx-datatable-header-template
+                let-value="value"
+                let-allRowsSelected="allRowsSelected"
+                let-selectFn="selectFn"
+              >
+                <mat-checkbox
+                  class="example-margin"
+                  style="z-index: 99999"
+                  type="checkbox"
+                  [checked]="allRowsSelected"
+                  (change)="selectFn(!allRowsSelected)"
+                  [indeterminate]="someComplete()"
+                ></mat-checkbox>
+              </ng-template>
+              <ng-template
+                ngx-datatable-cell-template
+                let-value="value"
+                let-row="row"
+                let-isSelected="isSelected"
+                let-onCheckboxChangeFn="onCheckboxChangeFn"
+              >
+                <mat-checkbox
+                  class="example-margin"
+                  type="checkbox"
+                  [checked]="isSelected"
+                  (change)="onCheckboxChangeFn($event)"
+                >
+                </mat-checkbox>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              *ngFor="let column of columnDefs"
+              [name]="column?.name"
+              [prop]="column?.prop"
+              [sortable]="
+                column?.sortable !== undefined ? column?.sortable : true
+              "
+              [comparator]="column?.comparator"
+              [cellClass]="column?.cellClass"
+              [headerClass]="column?.headerClass"
+            >
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span [matTooltip]="row[column?.prop]">
+                  {{ row[column?.prop] ?? "" }}
+                </span>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
     </div>
   </div>
 </div>

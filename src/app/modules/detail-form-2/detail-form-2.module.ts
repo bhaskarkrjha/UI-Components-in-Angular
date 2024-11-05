@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { SharedModule } from '../../shared/shared.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatCheckbox } from '@angular/material/checkbox';
 export const routes: Routes = [{ path: '', component: DetailForm2Component }];
 
 
@@ -24,6 +26,8 @@ export const routes: Routes = [{ path: '', component: DetailForm2Component }];
     MatButtonModule,
     MatTooltip,
     SharedModule,
+    NgxDatatableModule,
+    MatCheckbox,
     RouterModule.forChild(routes),
   ],
 })

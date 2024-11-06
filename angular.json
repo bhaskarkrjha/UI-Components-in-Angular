@@ -38,7 +38,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.scss",
+              "src/assets/icons/icons.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": []
@@ -100,7 +100,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.scss",
+              "src/assets/icons/icons.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": []
